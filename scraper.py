@@ -1,5 +1,3 @@
-from cgitb import text
-from operator import index
 from bs4 import BeautifulSoup
 import requests, re
 import string

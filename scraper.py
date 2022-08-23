@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests, re
 import string
+import drugDb
 
 
 printable = set(string.printable)
@@ -9,6 +10,7 @@ def normalize(s):
     return ''.join(filter(lambda x: x in printable, s))
 
 
+db = drugDb.DrugDb("Drugs.db")
 
 print("\n\nLoading links...")
 
@@ -21,11 +23,7 @@ with open('links.txt') as f:
 print("Got links!\n\n")
 
 
-count = 0
 for link in links:
-    if count >= 100:
-        break
-    
     # name, link, alt names (brand names and brand names of combination products), donts
 
     # Link
@@ -51,6 +49,7 @@ for link in links:
             eos = sentence.index('.')
             donts.append(sentence[:eos])
     print("Added " + str(len(donts)) + " do nots")
+    dontsString = '$'.join(donts)
     
 
     # ALTERNATE NAMES (BRAND NAMES AND COMBINATION)
@@ -70,8 +69,9 @@ for link in links:
         for item in bns:
             altnames.append(normalize(item.text))
     print("Added " + str(len(altnames)) + " brand names\n")
+    altNamesString = '$'.join(altnames)
 
-    count += 1
+    db.insert(name, link, altNamesString, dontsString)
 
 
 print("====== DONE ======")

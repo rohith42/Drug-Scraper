@@ -59,6 +59,8 @@ class DrugDb:
         self.cur.execute("SELECT * FROM drugs WHERE name=%s",(name,))
         d = self.cur.fetchall()[0]
         name, link, altnames, donts = d[1], d[2], d[3], d[4]
+        # Have to split the brand names and donts because they'll
+        # be stored as one long concatennated string in db
         return ({
             'name' : name,
             'link' : link,

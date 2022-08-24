@@ -1,5 +1,9 @@
 from drugDb import DrugDb
 
+"""
+This script is to test the get methods of DrugDB.
+"""
+
 db = DrugDb()
 
 allNames = db.getNames()

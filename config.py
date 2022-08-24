@@ -1,5 +1,9 @@
 from configparser import ConfigParser
 
+"""
+Reads database.ini for config details and returns a 
+dictonary to be past as parameters to connect to the db.
+"""
 
 def config(filename='database.ini', section='postgresql'):
     # create a parser

@@ -3,6 +3,12 @@ import requests, re
 import string
 from drugDb import DrugDb
 
+"""
+Scrapes all the drugs in medlineplus.gov and inserts its
+name, link, brand names, and important warnings (donts)
+into database.
+"""
+
 
 printable = set(string.printable)
 # Returns normalized string with non-ASCII characters removed
@@ -48,6 +54,7 @@ for link in links:
             eos = sentence.index('.')
             donts.append(sentence[:eos])
     print("Added " + str(len(donts)) + " do nots")
+    # Joining all the strings as one string cuz sql db doesn't take arrays
     dontsString = '$'.join(donts)
     print("dontsString length: " + str(len(dontsString)))
     
@@ -69,9 +76,11 @@ for link in links:
         for item in bns:
             altnames.append(normalize(item.text))
     print("Added " + str(len(altnames)) + " brand names")
+    # Joining all the strings as one string cuz sql db doesn't take arrays
     altNamesString = '$'.join(altnames)
     print("altnamesString length: " + str(len(altNamesString)) + "\n")
 
+    # Insert into database
     db.insert(name, link, altNamesString, dontsString)
 
 

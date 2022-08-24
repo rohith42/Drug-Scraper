@@ -9,8 +9,6 @@ printable = set(string.printable)
 def normalize(s):
     return ''.join(filter(lambda x: x in printable, s))
 
-
-print("\n\nConnecting to database...")
 db = DrugDb()
 
 print("\n\nLoading links...")

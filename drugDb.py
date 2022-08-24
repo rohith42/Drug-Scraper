@@ -2,11 +2,23 @@ import psycopg2
 from config import config
 
 class DrugDb: 
+    """
+    Class connects to drugdb postgresql database server.
+    Can only insert values once (that's why self.id=1).
+    Insert values using scraper.py if that script has not
+    already been executed on this computer.
+    Primarily to interface with the database;
+    use methods getNames() and getDrug(name).
+    """
+    
+    
     def __init__(self):
         self.conn = None
         self.cur = None
 
         try:
+            print("\n\nConnecting to database...")
+
             # read connection parameters
             params = config()
 
@@ -36,17 +48,29 @@ class DrugDb:
 
     def getNames(self):
         self.cur.execute("SELECT name FROM drugs")
-        return self.cur.fetchall()
+        listOfTuples = self.cur.fetchall()
+        normalized = []
+        for t in listOfTuples:
+            normalized.append(t[0])
+        return normalized
     
 
     def getDrug(self, name):
-        self.cur.execute("SELECT * FROM drugs WHERE name=?",(name))
-        return self.cur.fetchall()
+        self.cur.execute("SELECT * FROM drugs WHERE name=%s",(name,))
+        d = self.cur.fetchall()[0]
+        name, link, altnames, donts = d[1], d[2], d[3], d[4]
+        return ({
+            'name' : name,
+            'link' : link,
+            'brands' : altnames.split('$'),
+            'do nots' : donts.split('$')
+        })
 
 
     def view(self):
         self.cur.execute("SELECT * FROM drugs")
         return self.cur.fetchall()
+
 
     
     def __del__(self):

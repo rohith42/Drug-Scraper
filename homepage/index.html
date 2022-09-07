@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Drug API</title>
+        <meta name="description" content="API to get drug names and basic info as listed in MedlinePlus.gov">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <h1>Welcome to the drug API!</h1>
+        <h4>
+            This API allows you to get all the drug names and some basic information about the drug.
+            The data was webscraped from MedlinePlus.gov and more information about each drug can be
+            found at the link provided in the get request's JSON file. 
+        </h4>
+
+        <h2>
+            Endpoints:
+        </h2>
+        <ul>
+            <li>
+                <span class="code">/allnames</span>
+                <ul>
+                    <li>
+                        Returns a JSON file with one key, names, which is an array of all the different
+                        drug names stored in MedlinePlus.gov
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="code">/drug</span>
+                <ul>
+                    <li>
+                        Query param: <span class="code">name</span>
+                    </li>
+                    <li>
+                        Example: <span class="code">/drug?name=Simvastatin</span>
+                    </li>
+                    <li>
+                        Returns a JSON file with the specified drug's name, link, brand names, and 
+                        important cautions/warnings
+                    </li>
+                    <li>
+                        Note: The name MUST be a name from the array in <span class="code">/allnames</span> 
+                        and it must be spelled and capitalized as such
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </body>
+</html>

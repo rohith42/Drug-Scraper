@@ -7,9 +7,7 @@ db = DrugDb()
 
 @app.route('/', methods = ['GET'])
 def home_page():
-    dataset = {'Page': 'Home', 'Message': 'Successfully loaded home page', 'Timestamp': time.time()}
-    json_dump = json.dumps(dataset)
-    return json_dump
+    return render_template("index.html")
 
 
 @app.route('/allnames', methods = ['GET'])

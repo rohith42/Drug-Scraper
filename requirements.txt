@@ -2,7 +2,7 @@ Flask
 Flask-Cors
 beautifulsoup4
 configparser
-psycopg2
+psycopg2-binary
 config
 requests
 -e .

@@ -23,6 +23,7 @@ conda activate drugScraper
 ```bash
 cd Drug-Scraper
 pip install -r requirements.txt
+cd src
 ```
 
 4. Install PostgreSQL: https://www.postgresql.org/download/

@@ -1,0 +1,8 @@
+Flask
+Flask-Cors
+beautifulsoup4
+configparser
+psycopg2
+config
+requests
+-e .

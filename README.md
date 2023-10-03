@@ -25,12 +25,16 @@ cd Drug-Scraper
 pip install -r requirements.txt
 ```
 
-4. Run the scraping script
+4. Install PostgreSQL: https://www.postgresql.org/download/
+
+5. Add a ```database.ini``` file with the right configurations to connect to your PostgreSQL database
+
+6. Run the scraping script
 ```bash
 python scraper.py
 ```
 
-5. Run the application and visit the specified url
+7. Run the application and visit the specified url
 ```bash
 python main.py
 ```

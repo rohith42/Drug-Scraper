@@ -1,8 +1,43 @@
 # Drug-Scraper
 
-Uses BeautifulSoup4 to scrape drug information from medlineplus.gov and stores that information in a postgresql database. Uses Flask to deliver the JSON files as requested.
+Scrapes drug information from medlineplus.gov using BeautifulSoup4 and stores important information in a PostgreSQL database. Uses Flask to deliver the JSON files as requested.
 
 Stores the drug name, its link, its brand names, and important warnings (do nots).
+
+<hr>
+
+### Steps to run locally:
+
+1. Clone this repository
+```bash
+git clone https://github.com/rohith42/Drug-Scraper.git
+```
+
+2. Create a conda environment
+```bash
+conda create -n drugScraper python=3.11 -y
+conda activate drugScraper
+```
+
+3. Install the required packages
+```bash
+cd Drug-Scraper
+pip install -r requirements.txt
+```
+
+4. Run the scraping script
+```bash
+python scraper.py
+```
+
+5. Run the application and visit the specified url
+```bash
+python main.py
+```
+
+<hr>
+
+### File descriptions:
 
 config.py contains the parser that reads a database.ini file and returns a dictionary containing the parameters to connect to the database.
 
